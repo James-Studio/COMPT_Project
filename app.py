@@ -197,6 +197,7 @@ def webhook_handler():
         print(f"REQUEST BODY: \n{body}")
         response = machine.advance(event)
         
+        # user state will stop here
         if (machine.state == "user" and response == False):
             send_text_message(event.reply_token, "Interact with our ordering system <HELP> to get more !!!")
             print(f"P1 STATE: \n{machine.state}")
@@ -205,10 +206,10 @@ def webhook_handler():
             continue
         
         else:
-          
+            
             # start the code here
-            # FSM works here
-        
+            # other states will start from here 
+
             if (machine.state == event.message.text.lower()):
                machine.advance(event)
                
